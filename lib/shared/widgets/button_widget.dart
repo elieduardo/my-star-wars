@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:my_star_wars/core/app_colors.dart';
 import 'package:my_star_wars/core/app_text_styles.dart';
 
