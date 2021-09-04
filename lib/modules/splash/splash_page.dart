@@ -53,7 +53,9 @@ _isLoaded({required BuildContext context, required AppController controller}) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(
+          appController: controller,
+        ),
       ),
     );
   }

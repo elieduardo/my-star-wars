@@ -62,7 +62,6 @@ class AppController {
 
         List<FilmModel> filmsResponse = List<FilmModel>.from(
             _jsonResponse['results'].map((e) => FilmModel.fromMap((e))));
-        print(filmsResponse);
 
         await db.insertFilms(filmsResponse);
 

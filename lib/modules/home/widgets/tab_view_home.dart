@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:my_star_wars/core/app_colors.dart';
+import 'package:my_star_wars/modules/favorites/favorite_list_widget.dart';
+import 'package:my_star_wars/modules/film/films_list_widget.dart';
+import 'package:my_star_wars/modules/people/people_list_widget.dart';
+import 'package:my_star_wars/shared/app_controller.dart';
 
 class TabViewHome extends StatefulWidget {
-  const TabViewHome({Key? key}) : super(key: key);
+  final AppController appController;
+  const TabViewHome({
+    Key? key,
+    required this.appController,
+  }) : super(key: key);
 
   @override
   _TabViewHomeState createState() => _TabViewHomeState();
@@ -39,20 +48,14 @@ class _TabViewHomeState extends State<TabViewHome> {
           Expanded(
             child: TabBarView(
               children: [
-                Container(
-                  child: Center(
-                    child: Text("Filmes"),
-                  ),
+                FilmsList(
+                  films: widget.appController.films,
                 ),
-                Container(
-                  child: Center(
-                    child: Text("Personagens"),
-                  ),
+                PeopleList(
+                  people: widget.appController.people,
                 ),
-                Container(
-                  child: Center(
-                    child: Text("Favoritos"),
-                  ),
+                FavoriteList(
+                  appController: widget.appController,
                 )
               ],
             ),

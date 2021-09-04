@@ -14,7 +14,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55,
+      height: 50,
       width: 120,
       child: TextButton(
         style: ButtonStyle(

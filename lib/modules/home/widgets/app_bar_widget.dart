@@ -10,10 +10,10 @@ import 'user_icon.dart';
 class AppBarWidget extends PreferredSize {
   AppBarWidget({required HomeController controller})
       : super(
-          preferredSize: Size.fromHeight(200),
+          preferredSize: Size.fromHeight(176),
           child: Container(
             color: AppColors.darkBlue,
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.only(top: 24, left: 24, right: 24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -26,6 +26,7 @@ class AppBarWidget extends PreferredSize {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ButtonWidget(
                       label: "Site Oficial",
@@ -35,7 +36,14 @@ class AppBarWidget extends PreferredSize {
                             : controller.state = HomeState.webView;
                       },
                     ),
-                    UserIcon(),
+                    GestureDetector(
+                      child: UserIcon(),
+                      onTap: () {
+                        controller.state == HomeState.userPersonalization
+                            ? controller.state = HomeState.home
+                            : controller.state = HomeState.userPersonalization;
+                      },
+                    ),
                   ],
                 ),
               ],
