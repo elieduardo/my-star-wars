@@ -27,7 +27,7 @@ flutter run
 ## APK
 You can test this project installing manually
 
-[APK]()
+[APK](https://github.com/elieduardo/my-star-wars/raw/master/myStarWars.apk)
 
 ## Next steps
 - unitary tests
