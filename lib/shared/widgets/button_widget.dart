@@ -14,7 +14,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 45,
       width: 120,
       child: TextButton(
         style: ButtonStyle(
@@ -30,6 +30,7 @@ class ButtonWidget extends StatelessWidget {
         child: Text(
           label,
           style: AppTextStyles.titleRegular,
+          overflow: TextOverflow.clip,
         ),
       ),
     );

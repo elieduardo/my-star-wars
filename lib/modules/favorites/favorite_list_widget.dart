@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_star_wars/core/app_images.dart';
+import 'package:my_star_wars/core/app_text.dart';
+import 'package:my_star_wars/core/app_text_styles.dart';
 import 'package:my_star_wars/shared/app_controller.dart';
 import 'package:my_star_wars/shared/models/favorite_model.dart';
 import 'package:my_star_wars/shared/widgets/favorite_tile_widget.dart';
@@ -35,12 +38,30 @@ class _FavoriteListState extends State<FavoriteList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.symmetric(vertical: 5),
-      itemCount: _favorites.length,
-      itemBuilder: (context, i) {
-        return FavoriteTileWidget(favorite: _favorites[i]);
-      },
-    );
+    return _favorites.length >= 1
+        ? ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            itemCount: _favorites.length,
+            itemBuilder: (context, i) {
+              return FavoriteTileWidget(favorite: _favorites[i]);
+            },
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  AppImages.listEmpty,
+                  width: 200,
+                  height: 200,
+                ),
+              ),
+              Text(
+                AppText.emptyList,
+                style: AppTextStyles.titleMedium,
+              )
+            ],
+          );
   }
 }

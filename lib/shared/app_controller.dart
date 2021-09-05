@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:my_star_wars/shared/app_state.dart';
 import 'package:my_star_wars/shared/data/data_base.dart';
@@ -17,13 +16,13 @@ class AppController {
 
   Future<void> initAppController() async {
     this.people = await db.getPeople();
-    if (people.isEmpty) {
-      await _getPeople();
-    }
-
     this.films = await db.getFilms();
-    if (films.isEmpty) {
-      await _getFilms();
+
+    if (people.isEmpty || films.isEmpty) {
+      await _getSavePeople();
+      await _getSaveFilms();
+    } else {
+      await Future.delayed(Duration(seconds: 3));
     }
 
     if (state == AppState.loading) {
@@ -31,47 +30,35 @@ class AppController {
     }
   }
 
-  Future<void> _getPeople() async {
+  Future<void> _getSavePeople() async {
     try {
-      var response = await ApiCommunication().getPeople();
+      people = await ApiCommunication().getPeople();
 
-      if (response.statusCode == 200) {
-        var _jsonResponse = json.decode(response.body);
-
-        List<PersonModel> peopleResponse = List<PersonModel>.from(
-            _jsonResponse['results'].map((e) => PersonModel.fromMap((e))));
-
-        await db.insertPerson(peopleResponse);
-
-        this.people = await db.getPeople();
-      } else {
+      if (people.isEmpty) {
         state = AppState.error;
+        return;
       }
-    } on Exception {
+
+      await db.insertPerson(people);
+
+      people = await db.getPeople();
+    } catch (e) {
       state = AppState.error;
-      print("Erro ao buscar pessoas");
     }
   }
 
-  Future<void> _getFilms() async {
+  Future<void> _getSaveFilms() async {
     try {
-      var response = await ApiCommunication().getFilms();
+      films = await ApiCommunication().getFilms();
 
-      if (response.statusCode == 200) {
-        var _jsonResponse = json.decode(response.body);
-
-        List<FilmModel> filmsResponse = List<FilmModel>.from(
-            _jsonResponse['results'].map((e) => FilmModel.fromMap((e))));
-
-        await db.insertFilms(filmsResponse);
-
-        this.films = await db.getFilms();
-      } else {
+      if (films.isEmpty) {
         state = AppState.error;
+        return;
       }
+
+      await db.insertFilms(films);
     } on Exception {
       state = AppState.error;
-      print("Erro ao buscar filmes");
     }
   }
 }

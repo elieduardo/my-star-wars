@@ -13,4 +13,10 @@ class AppTextStyles {
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
+
+  static final TextStyle titleRegularYellow = TextStyle(
+    color: AppColors.yellow,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 }

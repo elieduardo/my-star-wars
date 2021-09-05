@@ -25,7 +25,14 @@ class _PersonTileWidgetState extends State<PersonTileWidget> {
         height: 60,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: AppColors.greyLight,
+          color: AppColors.white,
+          boxShadow: [
+            BoxShadow(
+                color: AppColors.black.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 6,
+                offset: Offset(0, 1)),
+          ],
         ),
         child: ListTile(
           title: Text(

@@ -22,11 +22,17 @@ class _FavoriteTileWidgetState extends State<FavoriteTileWidget> {
       child: Container(
         height: 60,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: widget.favorite.isPerson
-              ? AppColors.greenLight.withOpacity(0.2)
-              : AppColors.redLight.withOpacity(0.2),
-        ),
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                  color: widget.favorite.isPerson
+                      ? AppColors.greenLight.withOpacity(0.3)
+                      : AppColors.redLight.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 6,
+                  offset: Offset(0, 1)),
+            ],
+            color: AppColors.white),
         child: Center(
           child: Text(
             widget.favorite.name,

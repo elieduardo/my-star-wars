@@ -2,7 +2,7 @@
     package="com.example.my_star_wars">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="my_star_wars"
+        android:label="My Star Wars"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
